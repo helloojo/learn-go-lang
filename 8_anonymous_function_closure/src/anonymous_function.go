@@ -35,6 +35,15 @@ func main() {
 	println(calc_result(func(a int, b int) int {
 		return a % b
 	}, 2, 2))
+
+	sum_cont1 := sum_container()
+	println(sum_cont1(5))   //	5
+	println(sum_cont1(10))  // 15
+	println(sum_cont1(100)) // 115
+
+	sum_cont2 := sum_container()
+	println(sum_cont2(2))  // 2
+	println(sum_cont2(12)) // 14
 }
 
 func avg(sum func(nums []int) int, n ...int) float32 {
@@ -45,4 +54,12 @@ type calc func(int, int) int
 
 func calc_result(f calc, a int, b int) int {
 	return f(a, b)
+}
+
+func sum_container() func(int) int {
+	sum := 0
+	return func(num int) int {
+		sum += num
+		return sum
+	}
 }
